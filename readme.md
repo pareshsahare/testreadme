@@ -80,7 +80,6 @@ This module requires Terraform **>= 1.0.9**.
 | [gcp_org_admin_user](#gcp_org_admin_user)               | Identity with organization administrator permissions.                                          | `string`            | `null`                                                                                                               | no       |
 | [gcp_billing_creator_user](#gcp_billing_creator_user)   | Identity for creating billing accounts.                                                        | `string`            | `null`                                                                                                               | no       |
 | [gcp_billing_admin_user](#gcp_billing_admin_user)       | Identity with billing administrator permissions.                                               | `string`            | `null`                                                                                                               | no       |
-```
 
 ## Output
 | Name | Description | Type | Default | Required |
