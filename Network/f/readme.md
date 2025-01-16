@@ -316,39 +316,40 @@ If you received any errors or made any changes to the Terraform config or any `.
 | <a name="module_base_shared_vpc"></a> `base_shared_vpc` | `"../../../modules/base_shared_vpc"` | n/a     |
 
 ## Input
-| Name                            | Description                                                        | Type   | Default Value                                                      | Required |
-|---------------------------------|--------------------------------------------------------------------|--------|--------------------------------------------------------------------|----------|
-| <a name="input_source"></a> `source` | The source of the module.                                          | string | `"../../../modules/base_shared_vpc"`                               | Yes      |
-| <a name="input_count"></a> `count` | The number of instances of the resource.                           | number | `1`                                                                | No       |
-| <a name="input_custom_vpc_name"></a> `custom_vpc_name` | The name of the VPC.                                              | string | `"bdo-api-vpc-p-shared-base"`                                      | Yes      |
-| <a name="input_project_id"></a> `project_id` | The ID of the project where the VPC will be created.               | string | `data.terraform_remote_state.env.outputs.lz_bdo-lz-p-shared-base_project_id` | Yes      |
-| <a name="input_private_service_connection"></a> `private_service_connection` | The private service connection ranges.                            | map    | `{"psc-pp-shared-base-1": "172.16.9.0/24", "psc-pp-shared-base-2": "172.16.10.0/24"}` | Yes      |
-| <a name="input_org_id"></a> `org_id` | The organization ID.                                               | string | `local.org_id`                                                    | Yes      |
-| <a name="input_parent_folder"></a> `parent_folder` | The parent folder ID.                                              | string | `local.parent_folder`                                              | Yes      |
-| <a name="input_default_region1"></a> `default_region1` | The default region for the VPC.                                    | string | `local.gcp_region`                                                | Yes      |
-| <a name="input_default_region2"></a> `default_region2` | The secondary default region for the VPC.                          | string | `local.default_region2`                                           | Yes      |
-| <a name="input_domain"></a> `domain` | The domain associated with the VPC.                                | string | `local.domain`                                                    | Yes      |
-| <a name="input_windows_activation_enabled"></a> `windows_activation_enabled` | Whether Windows activation is enabled.                             | bool   | `var.windows_activation_enabled`                                   | Yes      |
-| <a name="input_dns_enable_inbound_forwarding"></a> `dns_enable_inbound_forwarding` | Enable inbound DNS forwarding.                                    | bool   | `var.dns_enable_inbound_forwarding`                                | Yes      |
-| <a name="input_dns_enable_logging"></a> `dns_enable_logging` | Enable DNS logging.                                               | bool   | `var.dns_enable_logging`                                           | Yes      |
-| <a name="input_firewall_enable_logging"></a> `firewall_enable_logging` | Enable firewall logging.                                          | bool   | `var.firewall_enable_logging`                                      | Yes      |
-| <a name="input_optional_fw_rules_enabled"></a> `optional_fw_rules_enabled` | Enable optional firewall rules.                                   | bool   | `var.optional_fw_rules_enabled`                                    | Yes      |
-| <a name="input_nat_enabled"></a> `nat_enabled` | Enable NAT configuration for the VPC.                              | bool   | `var.nat_enabled`                                                 | Yes      |
-| <a name="input_nat_bgp_asn"></a> `nat_bgp_asn` | The BGP ASN for NAT configuration.                                | string | `var.nat_bgp_asn`                                                 | Yes      |
-| <a name="input_nat_num_addresses_region1"></a> `nat_num_addresses_region1` | The number of NAT addresses in region 1.                           | number | `var.nat_num_addresses_region1`                                    | Yes      |
-| <a name="input_nat_num_addresses_region2"></a> `nat_num_addresses_region2` | The number of NAT addresses in region 2.                           | number | `var.nat_num_addresses_region2`                                    | Yes      |
-| <a name="input_nat_num_addresses"></a> `nat_num_addresses` | The total number of NAT addresses.                                | number | `var.nat_num_addresses`                                           | Yes      |
-| <a name="input_mode"></a> `mode` | The mode of operation for the VPC.                                 | string | `local.mode`                                                      | Yes      |
-| <a name="input_subnets"></a> `subnets` | The list of subnets to create within the VPC.                      | list   | `[ { "subnet_name" : "sb-p-shared-base-asia-southeast1-a", "subnet_ip" : "10.66.32.0/19", "subnet_region" : "asia-southeast1", "subnet_private_access" : "true", "subnet_flow_logs" : "false", "description" : "shared base subnet 1" } ]` | Yes      |
-| <a name="input_secondary_ranges"></a> `secondary_ranges` | Secondary IP ranges for the subnets.                               | map    | `{}`                                                               | No       |
-| <a name="input_allow_all_ingress_ranges"></a> `allow_all_ingress_ranges` | Allow all ingress ranges (optional).                              | list   | `null`                                                             | No       |
-| <a name="input_allow_all_egress_ranges"></a> `allow_all_egress_ranges` | Allow all egress ranges (optional).                               | list   | `null`                                                             | No       |
-| <a name="input_peer_networks_projects_vpcs"></a> `peer_networks_projects_vpcs` | The peering relationships between VPCs in different projects.      | map    | `{ "bdo-lz-c-network-hub" : ["vpc-bdo-lz-vpc-p-c-base-hub"] }`      | No       |
-| <a name="input_peer_dns_projects_vpcs"></a> `peer_dns_projects_vpcs` | The DNS peering relationships between projects' VPCs.             | map    | `{ "bdo-lz-c-network-hub" : "vpc-bdo-lz-vpc-p-c-base-hub" }`        | No       |
+| Name                             | Description                                                        | Type   | Required |
+|----------------------------------|--------------------------------------------------------------------|--------|----------|
+| `source`                         | The source of the module.                                          | string | Yes      |
+| `count`                          | The number of instances of the resource.                           | number | No       |
+| `custom_vpc_name`                | The name of the VPC.                                              | string | Yes      |
+| `project_id`                     | The ID of the project where the VPC will be created.               | string | Yes      |
+| `private_service_connection`     | The private service connection ranges.                            | map    | Yes      |
+| `org_id`                         | The organization ID.                                               | string | Yes      |
+| `parent_folder`                  | The parent folder ID.                                              | string | Yes      |
+| `default_region1`                | The default region for the VPC.                                    | string | Yes      |
+| `default_region2`                | The secondary default region for the VPC.                          | string | Yes      |
+| `domain`                         | The domain associated with the VPC.                                | string | Yes      |
+| `windows_activation_enabled`     | Whether Windows activation is enabled.                             | bool   | Yes      |
+| `dns_enable_inbound_forwarding`  | Enable inbound DNS forwarding.                                    | bool   | Yes      |
+| `dns_enable_logging`             | Enable DNS logging.                                               | bool   | Yes      |
+| `firewall_enable_logging`        | Enable firewall logging.                                          | bool   | Yes      |
+| `optional_fw_rules_enabled`     | Enable optional firewall rules.                                   | bool   | Yes      |
+| `nat_enabled`                    | Enable NAT configuration for the VPC.                              | bool   | Yes      |
+| `nat_bgp_asn`                    | The BGP ASN for NAT configuration.                                | string | Yes      |
+| `nat_num_addresses_region1`      | The number of NAT addresses in region 1.                           | number | Yes      |
+| `nat_num_addresses_region2`      | The number of NAT addresses in region 2.                           | number | Yes      |
+| `nat_num_addresses`              | The total number of NAT addresses.                                | number | Yes      |
+| `mode`                           | The mode of operation for the VPC.                                 | string | Yes      |
+| `subnets`                        | The list of subnets to create within the VPC.                      | list   | Yes      |
+| `secondary_ranges`               | Secondary IP ranges for the subnets.                               | map    | No       |
+| `allow_all_ingress_ranges`       | Allow all ingress ranges (optional).                              | list   | No       |
+| `allow_all_egress_ranges`        | Allow all egress ranges (optional).                               | list   | No       |
+| `peer_networks_projects_vpcs`    | The peering relationships between VPCs in different projects.      | map    | No       |
+| `peer_dns_projects_vpcs`         | The DNS peering relationships between projects' VPCs.             | map    | No       |
+
 
 ## Output
-| Name                                                                                      | Value                                                                                           |
-|-------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
-| <a name="output_bdo-lz-p-shared-base_bdo-api-vpc-p-shared-base_nw_link"></a> `bdo-lz-p-shared-base_bdo-api-vpc-p-shared-base_nw_link` | `module.vpc_bdo-api-vpc-p-shared-base_base_shared_vpc[0].network_self_link`                      |
-| <a name="output_bdo-lz-p-shared-base_bdo-api-vpc-p-shared-base_sb_link"></a> `bdo-lz-p-shared-base_bdo-api-vpc-p-shared-base_sb_link` | `module.vpc_bdo-api-vpc-p-shared-base_base_shared_vpc[0].subnets_self_links`                     |
-| <a name="output_bdo-lz-p-shared-base_bdo-api-vpc-p-shared-base_sb_map_link"></a> `bdo-lz-p-shared-base_bdo-api-vpc-p-shared-base_sb_map_link` | `module.vpc_bdo-api-vpc-p-shared-base_base_shared_vpc[0].sub_self_links`                         |
+| Name                                                                 | Description                                                        |
+|----------------------------------------------------------------------|--------------------------------------------------------------------|
+| `bdo-lz-p-shared-base_bdo-api-vpc-p-shared-base_nw_link`             | The self link of the network in the VPC `bdo-api-vpc-p-shared-base`. |
+| `bdo-lz-p-shared-base_bdo-api-vpc-p-shared-base_sb_link`             | The self links of the subnets in the VPC `bdo-api-vpc-p-shared-base`. |
+| `bdo-lz-p-shared-base_bdo-api-vpc-p-shared-base_sb_map_link`         | The self links of the subnet mappings in the VPC `bdo-api-vpc-p-shared-base`. |
